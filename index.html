@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T2M7BMGL');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>개발자 상태창: 각성</title>
@@ -41,16 +46,15 @@
             margin: 20px auto;
         }
 
-        /* 닉네임 입력 세션 반응형 강화 */
         .input-group {
             width: 100%;
-            padding: 0 10px; /* 내부 여백 확보 */
+            padding: 0 10px;
             margin-top: 20px;
         }
 
         .nickname-input {
             width: 100%; 
-            max-width: 100%; /* 부모 너비를 넘지 않음 */
+            max-width: 100%; 
             padding: 18px; 
             margin-bottom: 15px;
             background: rgba(255, 255, 255, 0.05);
@@ -69,7 +73,6 @@
             background: rgba(255, 255, 255, 0.08);
         }
 
-        /* 공통 버튼 스타일 */
         .btn { 
             display: block;
             width: 100%;
@@ -88,11 +91,9 @@
         .btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
         .btn:active { transform: translateY(0); }
 
-        /* 결과 저장/복사 버튼 */
         .btn-sub-container { display: flex; gap: 10px; width: 100%; padding: 0 10px; }
         .btn-sub { background: #222; border: 1px solid #444; color: #aaa; font-size: 0.9rem; padding: 12px; margin-bottom: 0; }
 
-        /* 나머지 스타일 생략 (이전과 동일하게 유지) */
         .header-bar { height: 4px; width: 100%; background: #222; position: absolute; top: 0; left: 0; border-radius: 24px 24px 0 0; overflow: hidden; }
         .header-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s ease; }
         .progress-text { font-size: 0.9rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; }
@@ -117,7 +118,8 @@
     </style>
 </head>
 <body>
-
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T2M7BMGL"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="container">
         <div class="header-bar"><div class="header-fill" id="bar"></div></div>
 
@@ -159,7 +161,6 @@
     </div>
 
     <script>
-        // JS 로직은 이전과 동일 (userName 반영 포함)
         let userName = "";
         const questions = [
             { q: "새 프로젝트의 시작, 가장 설레는 순간은?", a: [{ t: "사용자가 감탄할 화려한 UI를 구상할 때", s: { FE: 4, Design: 2 } }, { t: "한 치의 오차도 없는 DB 구조를 설계할 때", s: { BE: 3, DBA: 4 } }, { t: "폭발적인 트래픽을 견딜 인프라를 짤 때", s: { DevOps: 5 } }, { t: "이 서비스가 가져올 매출을 계산할 때", s: { biz: 5 } }] },
@@ -185,10 +186,21 @@
         let currentIdx = 0;
         let stats = { BE: 0, FE: 0, DevOps: 0, AI: 0, DBA: 0, Design: 0, biz: 0 };
 
+        // 이벤트 데이터 전송 함수 (GTM 데이터레이어 활용)
+        function sendEvent(eventName, params) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': eventName,
+                ...params
+            });
+        }
+
         function checkNickname() {
             const input = document.getElementById('nickname').value;
             if(!input.trim()) { alert("닉네임을 입력해주세요!"); return; }
             userName = input;
+            
+            sendEvent('test_start', { 'nickname': userName });
             startTest();
         }
 
@@ -199,9 +211,16 @@
         }
 
         function showQuestion() {
-            if(currentIdx >= questions.length) { renderResult(); return; }
+            if(currentIdx >= questions.length) { 
+                sendEvent('test_complete', { 'user_name': userName });
+                renderResult(); 
+                return; 
+            }
             document.getElementById('bar').style.width = ((currentIdx + 1) / questions.length * 100) + '%';
             document.getElementById('progress').innerText = `${currentIdx + 1} / ${questions.length}`;
+            
+            sendEvent('question_view', { 'question_num': currentIdx + 1 });
+
             const q = questions[currentIdx];
             document.getElementById('question').innerText = q.q;
             const ansDiv = document.getElementById('answers');
@@ -224,11 +243,13 @@
             document.getElementById('result-page').style.display = 'block';
             const topClass = Object.keys(characters).reduce((a, b) => (stats[a] || 0) > (stats[b] || 0) ? a : b);
             const char = characters[topClass];
+            
             document.getElementById('user-result-msg').innerText = `${userName}님의 클래스는`;
             document.getElementById('char-img').src = char.img;
             document.getElementById('char-name').innerText = char.name;
             document.getElementById('char-title').innerText = char.title;
             document.getElementById('mbti-desc').innerHTML = char.desc;
+            
             const container = document.getElementById('stat-container');
             container.innerHTML = '';
             ["BE", "FE", "AI", "Design", "biz"].forEach(s => {
@@ -238,6 +259,9 @@
         }
 
         function saveImage() {
+            const topClass = Object.keys(characters).reduce((a, b) => (stats[a] || 0) > (stats[b] || 0) ? a : b);
+            sendEvent('result_save', { 'character': topClass });
+
             html2canvas(document.getElementById('capture-area'), { backgroundColor: '#141624' }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = `${userName}_각성결과.png`;
@@ -247,6 +271,7 @@
         }
 
         function copyLink() {
+            sendEvent('share_click', { 'method': 'copy_link' });
             navigator.clipboard.writeText(window.location.href).then(() => alert("링크가 복사되었습니다!"));
         }
     </script>
