@@ -1,9 +1,4 @@
 # developer_test
-<img width="900" height="1291" alt="image" src="https://github.com/user-attachments/assets/e6f6619e-f9be-405a-acb9-58fe505a2e0f" />
-<img width="895" height="1497" alt="image" src="https://github.com/user-attachments/assets/580f60b7-3ef5-4c6a-9b9d-5210c9b4c13f" />
-
-
-
 
 # 🚀 개발자 상태창: 각성 (Developer Status Window)
 
