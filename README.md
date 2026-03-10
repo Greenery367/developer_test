@@ -2,7 +2,7 @@
 
 # 🚀 개발자 상태창: 각성 (Developer Status Window)
 
-> **["당신은 어떤 클래스로 각성하시겠습니까?"]**(https://www.google.com/search?q=https://developer-char-test.netlify.app)**
+> ["당신은 어떤 클래스로 각성하시겠습니까?"](https://www.google.com/search?q=https://developer-char-test.netlify.app)**
 ** > 8개의 질문을 통해 숨겨진 나의 개발자 직군과 능력치를 확인하는 웹 테스트 서비스입니다.
 
 ---
