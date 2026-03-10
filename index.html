@@ -1,120 +1,40 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta property="og:title" content="개발자 상태창: 각성">
-    <meta property="og:description" content="내 숨겨진 개발자 클래스를 확인하고 상태창을 각성시키세요!">
-    <meta property="og:image" content="image_0.png">
-    <meta property="og:url" content="https://your-site.netlify.app">
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-T2M7BMGL');</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>개발자 상태창: 각성</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <meta property="og:title" content="개발자 상태창: 각성">
+    <meta property="og:description" content="내 숨겨진 개발자 클래스를 확인하고 상태창을 각성시키세요!">
+    <meta property="og:image" content="image_0.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
     <style>
-        /* 기본 설정: 박스 사이즈 계산을 패딩 포함으로 고정 */
         * { box-sizing: border-box; }
-
-        :root {
-            --primary: #00f2ff;
-            --secondary: #7000ff;
-            --bg: #05060a;
-            --card-bg: #141624;
-            --text: #ffffff;
-            --accent: #ff00de;
-        }
-
-        body {
-            margin: 0; padding: 0;
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Noto Sans KR', sans-serif;
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .container {
-            width: 92%; 
-            max-width: 500px;
-            text-align: center; padding: 40px 20px;
-            background: var(--card-bg);
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            margin: 20px auto;
-        }
-
-        .input-group {
-            width: 100%;
-            padding: 0 10px;
-            margin-top: 20px;
-        }
-
-        .nickname-input {
-            width: 100%; 
-            max-width: 100%; 
-            padding: 18px; 
-            margin-bottom: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(0, 242, 255, 0.3);
-            border-radius: 12px; 
-            color: #fff;
-            font-size: 1.1rem; 
-            text-align: center; 
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .nickname-input:focus { 
-            border-color: var(--primary);
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .btn { 
-            display: block;
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
-            border: none; 
-            padding: 18px; 
-            color: white; 
-            font-weight: 700; 
-            border-radius: 12px; 
-            cursor: pointer; 
-            font-size: 1.1rem; 
-            transition: 0.3s; 
-            margin-bottom: 10px;
-        }
-
-        .btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
-        .btn:active { transform: translateY(0); }
-
-        .btn-sub-container { display: flex; gap: 10px; width: 100%; padding: 0 10px; }
-        .btn-sub { background: #222; border: 1px solid #444; color: #aaa; font-size: 0.9rem; padding: 12px; margin-bottom: 0; }
-
+        :root { --primary: #00f2ff; --secondary: #7000ff; --bg: #05060a; --card-bg: #141624; --text: #ffffff; }
+        body { margin: 0; padding: 0; background-color: var(--bg); color: var(--text); font-family: 'Noto Sans KR', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
+        .container { width: 92%; max-width: 500px; text-align: center; padding: 40px 20px; background: var(--card-bg); border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.05); position: relative; }
         .header-bar { height: 4px; width: 100%; background: #222; position: absolute; top: 0; left: 0; border-radius: 24px 24px 0 0; overflow: hidden; }
         .header-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s ease; }
-        .progress-text { font-size: 0.9rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; }
+        .nickname-input { width: 100%; padding: 18px; margin-bottom: 15px; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(0, 242, 255, 0.3); border-radius: 12px; color: #fff; font-size: 1.1rem; text-align: center; outline: none; }
+        .btn { display: block; width: 100%; background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; padding: 18px; color: white; font-weight: 700; border-radius: 12px; cursor: pointer; font-size: 1.1rem; transition: 0.3s; margin-bottom: 10px; }
+        .btn-sub { background: #222; border: 1px solid #444; color: #aaa; padding: 12px; border-radius: 12px; cursor: pointer; flex: 1; }
         .fade-in { animation: fadeIn 0.5s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        #start-page h1 { font-size: 1.8rem; margin: 20px 0; color: #f0f0f0; }
-        #start-page h1 span { font-weight: 700; color: var(--primary); }
-        .main-img { width: 100%; border-radius: 16px; margin: 20px 0; border: 1px solid rgba(255, 255, 255, 0.1); }
-        #question-page { display: none; }
+        #question-page, #result-page { display: none; }
         .q-box { font-size: 1.3rem; margin-bottom: 30px; line-height: 1.5; }
         .answer-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); padding: 18px; margin-bottom: 15px; border-radius: 15px; cursor: pointer; text-align: left; }
-        #result-page { display: none; }
         .card { background: var(--card-bg); border: 1px solid var(--primary); border-radius: 20px; padding: 40px 20px; margin: 25px 0; position: relative; }
         .rank-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #000; padding: 4px 20px; border-radius: 4px; font-weight: 700; }
-        .char-portrait { width: 160px; height: 160px; margin: 0 auto 20px; border-radius: 15px; overflow: hidden; border: 2px solid #333; }
-        .char-portrait img { width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; }
-        .char-name { font-size: 2rem; font-weight: 700; margin-bottom: 25px; }
         .stat-row { display: flex; align-items: center; margin-bottom: 10px; }
         .stat-label { width: 50px; text-align: left; color: #666; font-size: 0.75rem; }
         .stat-bar-bg { flex: 1; height: 6px; background: #222; border-radius: 3px; }
@@ -124,107 +44,84 @@
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T2M7BMGL"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
     <div class="container">
         <div class="header-bar"><div class="header-fill" id="bar"></div></div>
 
         <div id="start-page" class="fade-in">
             <p style="color:var(--primary); font-size:0.75rem; letter-spacing:4px;">ACCESS GRANTED</p>
-            <h1>내 눈에만 보이는<br><span>개발자 상태창</span></h1>
-            <img src="image_0.png" class="main-img" alt="메인 비주얼">
-            
-            <div class="input-group">
-                <input type="text" id="nickname" class="nickname-input" placeholder="닉네임을 입력하세요" maxlength="10">
-                <button class="btn" onclick="checkNickname()">동기화 시작</button>
-            </div>
-            <p style="color:#666; font-size:0.8rem; margin-top:15px;">※ 닉네임은 결과 이미지에 반영됩니다.</p>
+            <h1>내 눈에만 보이는<br><span style="color:var(--primary); font-weight:700;">개발자 상태창</span></h1>
+            <img src="image_0.png" style="width:100%; border-radius:16px; margin:20px 0;" alt="메인 비주얼">
+            <input type="text" id="nickname" class="nickname-input" placeholder="닉네임을 입력하세요">
+            <button class="btn" onclick="checkNickname()">동기화 시작</button>
         </div>
 
         <div id="question-page">
-            <div id="progress" class="progress-text">1 / 8</div>
+            <div id="progress" style="color:var(--primary); margin-bottom:10px;">1 / 8</div>
             <div id="question" class="q-box"></div>
             <div id="answers"></div>
         </div>
 
         <div id="result-page" class="fade-in">
             <div id="capture-area" class="card">
-                <div class="rank-badge" id="rank-text">RANK S</div>
-                <div id="user-result-msg" style="color:var(--primary); margin-bottom:10px;">OOO님의 클래스는</div>
-                <div class="char-portrait"><img id="char-img" src="" alt="캐릭터"></div>
-                <div id="char-title" style="color:var(--primary); font-size:0.9rem;">칭호</div>
-                <div class="char-name" id="char-name">캐릭터 이름</div>
-                <div id="stat-container" style="margin-bottom:25px;"></div>
-                <div id="mbti-desc" style="text-align:left; font-size:0.9rem; color:#999; line-height:1.6; border-top:1px solid #333; padding-top:20px;"></div>
+                <div class="rank-badge">RANK S</div>
+                <div id="user-result-msg" style="color:var(--primary); margin-bottom:10px;"></div>
+                <div id="char-name" style="font-size: 2rem; font-weight: 700; margin-bottom: 20px;"></div>
+                <div id="stat-container"></div>
+                <p id="mbti-desc" style="text-align:left; font-size:0.9rem; color:#999; margin-top:20px;"></p>
             </div>
-            
-            <button class="btn" onclick="location.reload()">테스트 다시 하기</button>
-            <div class="btn-sub-container">
-                <button class="btn btn-sub" style="flex: 1;" onclick="saveImage()">결과 저장</button>
-                <button class="btn btn-sub" style="flex: 1;" onclick="copyLink()">링크 복사</button>
+            <button class="btn" onclick="location.reload()">다시 하기</button>
+            <div style="display:flex; gap:10px;">
+                <button class="btn-sub" onclick="saveImage()">이미지 저장</button>
+                <button class="btn-sub" onclick="copyLink()">링크 복사</button>
             </div>
         </div>
     </div>
 
     <script>
         let userName = "";
-        const questions = [
-            { q: "새 프로젝트의 시작, 가장 설레는 순간은?", a: [{ t: "사용자가 감탄할 화려한 UI를 구상할 때", s: { FE: 4, Design: 2 } }, { t: "한 치의 오차도 없는 DB 구조를 설계할 때", s: { BE: 3, DBA: 4 } }, { t: "폭발적인 트래픽을 견딜 인프라를 짤 때", s: { DevOps: 5 } }, { t: "이 서비스가 가져올 매출을 계산할 때", s: { biz: 5 } }] },
-            { q: "치명적인 버그 발생! 당신의 대응 스타일은?", a: [{ t: "로그를 추적해 근본적인 코드 결함을 파헤친다", s: { BE: 4, DBA: 1 } }, { t: "서버 리소스를 체크하고 인프라부터 복구한다", s: { DevOps: 5 } }, { t: "AI의 도움을 받아 최적의 해결 코드를 찾는다", s: { AI: 5 } }, { t: "일단 화면상에서 에러를 숨겨 유저를 안심시킨다", s: { FE: 3, Design: 2 } }] },
-            { q: "상태창 상점에서 아이템을 하나만 산다면?", a: [{ t: "성능을 200% 끌어올리는 '최적화의 반지'", s: { BE: 2, DBA: 3 } }, { t: "모든 유저의 마음을 읽는 '독심술의 거울'", s: { biz: 3, Design: 2 } }, { t: "자동으로 코드를 완성하는 '현자의 키보드'", s: { AI: 5 } }, { t: "절대 무너지지 않는 '무적의 방패'", s: { DevOps: 5 } }] },
-            { q: "동료와의 기술 토론 중, 당신의 태도는?", a: [{ t: "공식 문서와 기술 스펙을 기반으로 논쟁한다", s: { BE: 3, DBA: 2 } }, { t: "이 기능이 사용자 경험(UX)에 줄 영향을 강조한다", s: { Design: 4, FE: 1 } }, { t: "이것이 사업 일정과 비용에 미칠 영향을 분석한다", s: { biz: 5 } }, { t: "최신 논문과 AI 트렌드를 예로 들며 설명한다", s: { AI: 4, BE: 1 } }] },
-            { q: "작업 중 가장 큰 희열을 느끼는 순간은?", a: [{ t: "복잡한 쿼리가 단 0.01초 만에 실행될 때", s: { DBA: 5 } }, { t: "내가 짠 애니메이션이 매끄럽게 돌아갈 때", s: { FE: 4, Design: 1 } }, { t: "자동 배포 파이프라인이 'Success'를 띄울 때", s: { DevOps: 5 } }, { t: "기획서보다 더 거대한 비즈니스 모델이 보일 때", s: { biz: 5 } }] },
-            { q: "갑자기 1억 명의 사용자가 몰려온다면?", a: [{ t: "서버 사양을 늘리고 로드밸런싱을 체크한다", s: { DevOps: 4, BE: 1 } }, { t: "대기열 화면을 세상에서 가장 예쁘게 만든다", s: { Design: 3, FE: 2 } }, { t: "지금이 바로 수익을 극대화할 타이밍이라 믿는다", s: { biz: 5 } }, { t: "AI 부하 분산 알고리즘을 즉시 가동한다", s: { AI: 4, DBA: 1 } }] },
-            { q: "당신의 코딩 가치관은?", a: [{ t: "예술은 죽지 않는다. 코드도 아름다워야 한다", s: { Design: 4, FE: 1 } }, { t: "데이터는 정직하다. 효율과 무결성이 최고다", s: { DBA: 4, BE: 1 } }, { t: "비즈니스가 없으면 코드는 도구일 뿐이다", s: { biz: 5 } }, { t: "안정성이 1순위. 서버는 절대 죽으면 안 된다", s: { DevOps: 5 } }] },
-            { q: "마지막으로 선택할 당신의 전직 경로는?", a: [{ t: "모든 시스템을 설계하는 아키텍트", s: { BE: 2, DevOps: 3 } }, { t: "세상을 바꾸는 혁신적인 CEO", s: { biz: 5 } }, { t: "인간을 뛰어넘는 지능을 만드는 과학자", s: { AI: 5 } }, { t: "모든 경험을 디자인하는 크리에이티브 디렉터", s: { Design: 3, FE: 2 } }] }
-        ];
-
-        const characters = {
-            DevOps: { name: "빌 게이트웨이", title: "무적의 인프라 군주", desc: "당신은 시스템의 '신'입니다. 코드를 짜는 것보다 그 코드가 숨쉴 공간을 완벽하게 구축하는 데 집착하죠.", img: "char_devops.png" },
-            biz: { name: "마크 주크박스", title: "성공의 연금술사", desc: "기술은 수단일 뿐, 당신은 돈의 흐름과 기회를 봅니다. 당신의 상태창은 유니콘 창업주를 가리키고 있습니다.", img: "char_biz.png" },
-            AI: { name: "젠슨 황사장", title: "지능의 설계자", desc: "복잡한 작업은 AI에게 맡깁니다. 데이터를 통해 정답을 찾아내는 당신은 진정한 AI 마스터입니다.", img: "char_ai.png" },
-            BE: { name: "김.O.한", title: "근본의 계승자", desc: "화려함보다 탄탄함을 선호합니다. 당신의 코드는 후배 개발자들에게 성경처럼 읽히게 될 것입니다.", img: "char_be.png" },
-            Design: { name: "스티브 잡코리아", title: "감각의 혁명가", desc: "1px의 오차도 용납하지 않는 예술가. 기술에 감성을 입히는 크리에이티브의 정점입니다.", img: "char_design.png" },
-            FE: { name: "브랜든 아이쿠", title: "화면의 지배자", desc: "사용자와 소통하는 전장의 지배자. 매끄러운 화면 전환과 퍼포먼스로 유저를 매료시킵니다.", img: "char_fe.png" },
-            DBA: { name: "다익스트라", title: "데이터의 수호자", desc: "복잡한 데이터 구조를 한눈에 파악합니다. 최소의 비용으로 최대 효율을 뽑아내는 전략가입니다.", img: "char_dba.png" }
-        };
-
         let currentIdx = 0;
         let stats = { BE: 0, FE: 0, DevOps: 0, AI: 0, DBA: 0, Design: 0, biz: 0 };
 
-        // 이벤트 데이터 전송 함수 (GTM 데이터레이어 활용)
-        function sendEvent(eventName, params) {
+        const questions = [
+            { q: "새 프로젝트의 시작, 가장 설레는 순간은?", a: [{ t: "사용자가 감탄할 UI 구상", s: { FE: 4, Design: 2 } }, { t: "완벽한 DB 구조 설계", s: { BE: 3, DBA: 4 } }, { t: "폭발적 트래픽 견딜 인프라", s: { DevOps: 5 } }, { t: "이 서비스가 가져올 매출 계산", s: { biz: 5 } }] },
+            { q: "치명적인 버그 발생! 대응 스타일은?", a: [{ t: "근본적 코드 결함 파헤치기", s: { BE: 4 } }, { t: "서버 리소스 체크/복구", s: { DevOps: 5 } }, { t: "AI 도움 받아 최적화", s: { AI: 5 } }, { t: "UI에서 에러 숨겨 안심시키기", s: { FE: 3 } }] },
+            { q: "아이템을 하나만 산다면?", a: [{ t: "최적화의 반지", s: { BE: 2, DBA: 3 } }, { t: "독심술의 거울", s: { biz: 3, Design: 2 } }, { t: "현자의 키보드", s: { AI: 5 } }, { t: "무적의 방패", s: { DevOps: 5 } }] },
+            { q: "기술 토론 중, 당신의 태도는?", a: [{ t: "공식 문서 기반 논쟁", s: { BE: 3 } }, { t: "UX 영향 강조", s: { Design: 4 } }, { t: "사업 일정/비용 분석", s: { biz: 5 } }, { t: "AI 트렌드 예시", s: { AI: 4 } }] },
+            { q: "작업 중 가장 큰 희열은?", a: [{ t: "0.01초 쿼리 실행", s: { DBA: 5 } }, { t: "매끄러운 애니메이션", s: { FE: 4 } }, { t: "자동 배포 Success", s: { DevOps: 5 } }, { t: "거대한 비즈니스 모델 발견", s: { biz: 5 } }] },
+            { q: "1억 명의 사용자가 몰려온다면?", a: [{ t: "로드밸런싱 체크", s: { DevOps: 4 } }, { t: "예쁜 대기열 화면 제작", s: { Design: 3, FE: 2 } }, { t: "수익 극대화 타이밍", s: { biz: 5 } }, { t: "AI 부하 분산 가동", s: { AI: 4 } }] },
+            { q: "당신의 코딩 가치관은?", a: [{ t: "코드는 아름다워야 한다", s: { Design: 4, FE: 1 } }, { t: "데이터는 정직하다", s: { DBA: 4 } }, { t: "비즈니스가 우선이다", s: { biz: 5 } }, { t: "안정성이 1순위다", s: { DevOps: 5 } }] },
+            { q: "마지막 전직 경로는?", a: [{ t: "시스템 아키텍트", s: { BE: 2, DevOps: 3 } }, { t: "혁신적인 CEO", s: { biz: 5 } }, { t: "AI 과학자", s: { AI: 5 } }, { t: "크리에이티브 디렉터", s: { Design: 3, FE: 2 } }] }
+        ];
+
+        const characters = {
+            DevOps: { name: "빌 게이트웨이", desc: "시스템의 신입니다. 완벽한 환경 구축에 집착하죠." },
+            biz: { name: "마크 주크박스", desc: "성공의 연금술사. 돈의 흐름과 기회를 봅니다." },
+            AI: { name: "젠슨 황사장", desc: "지능의 설계자. 데이터를 통해 정답을 찾습니다." },
+            BE: { name: "김근본", desc: "화려함보다 탄탄함을 선호하는 근본 계승자입니다." },
+            Design: { name: "스티브 잡코리아", desc: "1px의 오차도 용납하지 않는 예술가입니다." },
+            FE: { name: "브랜든 아이쿠", desc: "사용자를 매료시키는 화면의 지배자입니다." },
+            DBA: { name: "다익스트라", desc: "데이터 구조를 한눈에 파악하는 전략가입니다." }
+        };
+
+        function sendEvent(name, params) {
             window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': eventName,
-                ...params
-            });
+            window.dataLayer.push({ 'event': name, ...params });
         }
 
         function checkNickname() {
-            const input = document.getElementById('nickname').value;
-            if(!input.trim()) { alert("닉네임을 입력해주세요!"); return; }
-            userName = input;
-            
+            userName = document.getElementById('nickname').value;
+            if(!userName.trim()) { alert("닉네임을 입력하세요!"); return; }
             sendEvent('test_start', { 'nickname': userName });
-            startTest();
-        }
-
-        function startTest() {
             document.getElementById('start-page').style.display = 'none';
             document.getElementById('question-page').style.display = 'block';
             showQuestion();
         }
 
         function showQuestion() {
-            if(currentIdx >= questions.length) { 
-                sendEvent('test_complete', { 'user_name': userName });
-                renderResult(); 
-                return; 
-            }
-            document.getElementById('bar').style.width = ((currentIdx + 1) / questions.length * 100) + '%';
-            document.getElementById('progress').innerText = `${currentIdx + 1} / ${questions.length}`;
-            
-            sendEvent('question_view', { 'question_num': currentIdx + 1 });
-
+            if(currentIdx >= questions.length) { renderResult(); return; }
+            document.getElementById('bar').style.width = ((currentIdx+1)/questions.length*100)+'%';
+            document.getElementById('progress').innerText = `${currentIdx+1} / ${questions.length}`;
             const q = questions[currentIdx];
             document.getElementById('question').innerText = q.q;
             const ansDiv = document.getElementById('answers');
@@ -234,7 +131,7 @@
                 btn.className = 'answer-btn fade-in';
                 btn.innerText = ans.t;
                 btn.onclick = () => {
-                    for(let key in ans.s) stats[key] += ans.s[key];
+                    for(let k in ans.s) stats[k] += ans.s[k];
                     currentIdx++;
                     showQuestion();
                 };
@@ -243,40 +140,33 @@
         }
 
         function renderResult() {
+            sendEvent('test_complete', { 'user': userName });
             document.getElementById('question-page').style.display = 'none';
             document.getElementById('result-page').style.display = 'block';
-            const topClass = Object.keys(characters).reduce((a, b) => (stats[a] || 0) > (stats[b] || 0) ? a : b);
-            const char = characters[topClass];
-            
-            document.getElementById('user-result-msg').innerText = `${userName}님의 클래스는`;
-            document.getElementById('char-img').src = char.img;
+            const top = Object.keys(stats).reduce((a, b) => stats[a] > stats[b] ? a : b);
+            const char = characters[top] || characters['BE'];
+            document.getElementById('user-result-msg').innerText = `${userName}님의 클래스`;
             document.getElementById('char-name').innerText = char.name;
-            document.getElementById('char-title').innerText = char.title;
-            document.getElementById('mbti-desc').innerHTML = char.desc;
-            
+            document.getElementById('mbti-desc').innerText = char.desc;
             const container = document.getElementById('stat-container');
             container.innerHTML = '';
             ["BE", "FE", "AI", "Design", "biz"].forEach(s => {
-                const val = Math.min(((stats[s] || 0) / 15) * 100 + 10, 100);
+                const val = Math.min((stats[s] / 15) * 100 + 20, 100);
                 container.innerHTML += `<div class="stat-row"><div class="stat-label">${s}</div><div class="stat-bar-bg"><div class="stat-bar-fill" style="width:${val}%"></div></div></div>`;
             });
         }
 
         function saveImage() {
-            const topClass = Object.keys(characters).reduce((a, b) => (stats[a] || 0) > (stats[b] || 0) ? a : b);
-            sendEvent('result_save', { 'character': topClass });
-
             html2canvas(document.getElementById('capture-area'), { backgroundColor: '#141624' }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = `${userName}_각성결과.png`;
+                link.download = `${userName}_결과.png`;
                 link.href = canvas.toDataURL();
                 link.click();
             });
         }
 
         function copyLink() {
-            sendEvent('share_click', { 'method': 'copy_link' });
-            navigator.clipboard.writeText(window.location.href).then(() => alert("링크가 복사되었습니다!"));
+            navigator.clipboard.writeText(window.location.href).then(() => alert("링크 복사 완료!"));
         }
     </script>
 </body>
